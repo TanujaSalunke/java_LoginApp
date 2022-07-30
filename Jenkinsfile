@@ -9,18 +9,18 @@ pipeline{
         //        git 'https://github.com/TanujaSalunke/java_LoginApp.git'
           //  }
        //  }        
-  //     stage('Build'){
-    //        steps{
-      //          sh 'mvn clean package'
-        //    }
-       //  }
+       stage('Build'){
+           steps{
+                bat "mvn clean package"
+            }
+         }
         stage('SonarQube analysis') {
 //    def scannerHome = tool 'SonarScanner 4.0';
         steps{
         withSonarQubeEnv('sonarqube-9.5') { 
         // If you have configured more than one global server connection, you can specify its name
-//      sh "${scannerHome}/bin/sonar-scanner"
-        sh "mvn sonar:sonar"
+//      bat "${scannerHome}/bin/sonar-scanner"
+        bat "mvn sonar:sonar"
     }
         }
         }
