@@ -1,35 +1,28 @@
 pipeline{
     agent any
-    stages{
-        stage('validate'){
-            steps{
-                bat "mvn validate"
-            }
-        }        
-        stage('maven compile'){
-            steps{
-                bat "mvn compile"
-            }
-        }
-        stage('test'){
-            steps{
-                bat "mvn test"
-            }
-        }
-        stage('package'){
-            steps{
-                bat "mvn package"
-            }
-        }
-        stage('verify'){
-            steps{
-                bat "mvn verify"
-            }
-        }
-         stage('install'){
-            steps{
-                bat "mvn install"
-            }
-        }         
+    environment {
+        PATH = "$PATH:C:\DevTools\apache-maven-3.8.5\bin"
     }
+    stages{
+       stage('GetCode'){
+            steps{
+                git 'https://github.com/TanujaSalunke/java_LoginApp.git'
+            }
+         }        
+       stage('Build'){
+            steps{
+                sh 'mvn clean package'
+            }
+         }
+        stage('SonarQube analysis') {
+//    def scannerHome = tool 'SonarScanner 4.0';
+        steps{
+        withSonarQubeEnv('sonarqube-9.5') { 
+        // If you have configured more than one global server connection, you can specify its name
+//      sh "${scannerHome}/bin/sonar-scanner"
+        sh "mvn sonar:sonar"
+    }
+        }
+        }
+     }
 }
