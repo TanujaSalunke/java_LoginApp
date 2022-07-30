@@ -3,12 +3,12 @@ pipeline{
 //    environment {
   //      PATH = "$PATH:C:\DevTools\apache-maven-3.8.5\bin"
    // }
-    stages{
-       stage('GetCode'){
-            steps{
-                git 'https://github.com/TanujaSalunke/java_LoginApp.git'
-            }
-         }        
+  //  stages{
+    //   stage('GetCode'){
+      //      steps{
+        //        git 'https://github.com/TanujaSalunke/java_LoginApp.git'
+          //  }
+       //  }        
   //     stage('Build'){
     //        steps{
       //          sh 'mvn clean package'
@@ -24,5 +24,4 @@ pipeline{
     }
         }
         }
-     }
-}
+  }
