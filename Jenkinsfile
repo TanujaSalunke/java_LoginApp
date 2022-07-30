@@ -1,8 +1,8 @@
 pipeline{
     agent any
-    environment {
-        PATH = "$PATH:C:\DevTools\apache-maven-3.8.5\bin"
-    }
+//    environment {
+  //      PATH = "$PATH:C:\DevTools\apache-maven-3.8.5\bin"
+   // }
     stages{
        stage('GetCode'){
             steps{
